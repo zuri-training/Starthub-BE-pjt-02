@@ -1,7 +1,16 @@
 //require packages
 
 const express = require("express");
+const mongoose = require('mongoose');
+
+//import db connection
+const connectDB = require("./db");
+
 const app = express();
+
+// connect db
+connectDB();
+
 
 // basic route test
 app.get('/', (req, res) => res.send('Hello'));
