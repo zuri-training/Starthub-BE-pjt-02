@@ -1,0 +1,31 @@
+{
+  "name": "starthub-be-pjt-02",
+  "version": "1.0.0",
+  "description": "Starthub.com is a website where individuals that have passed through the start.ng program or are currently going through the training can showcase their skills and growth through the course of the program.",
+  "main": "server.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.12.14",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UkemeSkywalker/Starthub-BE-pjt-02.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UkemeSkywalker/Starthub-BE-pjt-02/issues"
+  },
+  "homepage": "https://github.com/UkemeSkywalker/Starthub-BE-pjt-02#readme"
+}
