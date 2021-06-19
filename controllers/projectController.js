@@ -33,7 +33,7 @@ exports.getProjects = async (req, res) => {
 };
 
 exports.getProject = async (req, res) => {
-  const project = await Project.findById({ _id: req.params.id });
+  const project = await Project.findById( req.params.id );
 
   try {
     res.status(200).json({
@@ -47,10 +47,11 @@ exports.getProject = async (req, res) => {
 
 exports.updateProject = async (req, res) => {
   const updatedProject = await Project.findByIdAndUpdate(req.params.id, {
-    projectName: req.body.projectName,
-    projectInfo: req.body.projectInfo,
-    projectImage: req.body.projectImage,
-    projectUrl: req.body.projectUrl,
+    ...req.body
+    // projectName: req.body.projectName,
+    // projectInfo: req.body.projectInfo,
+    // projectImage: req.body.projectImage,
+    // projectUrl: req.body.projectUrl,
   });
 
   try {

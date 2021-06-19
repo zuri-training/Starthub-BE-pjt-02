@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors')
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -6,17 +7,20 @@ dotenv.config();
 const connectDB = require("./db");
 
 // import routes
-const projectRoute = require('./routes/projectRoute')
+const projectRoutes = require('./routes/projectRoutes')
+const authRoutes = require('./routes/authRoutes')
 
 const app = express();
 
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 // connect db
 connectDB();
 
 // routes
-app.use(projectRoute)
+app.use("/auth", authRoutes)
+app.use(projectRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
