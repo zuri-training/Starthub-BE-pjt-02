@@ -1,23 +1,21 @@
 
-const express = require("express");
-const mongoose = require("mongoose");
+const express = require('express');
+const userRouter = require('./routes/intern');
 const dotenv = require('dotenv');
 dotenv.config();
 
 //import db connection
-const connectDB = require("./db");
+const connectDB = require('./db');
 
 const app = express();
 
 app.use(express.json({ extended: false }));
+app.use(userRouter)
 
 // connect db
 connectDB();
 
-// Basic test route
-app.get("/", (req, res) => {
-  res.send("Starthub app!");
-});
+
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {

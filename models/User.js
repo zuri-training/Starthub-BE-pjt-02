@@ -1,35 +1,45 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
+const bcrypt = require('bcryptjs');
+
 const Schema = mongoose.Schema;
 
 // Create Schema
-const UserSchema = new Schema({
+const userSchema = new Schema({
   firstName: {
     type: String,
-    require: true
+    required: true
   },
-  LastName: {
+  lastName: {
     type: String,
-    require: true
+    required: true
   },
   email: {
     type: String,
-    require: true
+    required: true,
+    validate(value) {
+      if (!validator.isEmail(value)){
+        throw new Error('Email is invalid')
+      }
+    }
   },
   password:{
     type: String,
-    require: true
+    required: true,
+    trim: true,
+    minlength: 7
   },
   studentId:{
     type: String,
-    require: true
+    required: true
   },
   profilePicture: {
     data: Buffer,
-    type: string,
+    type: String,
     
   },
   bio: {
-    type: string
+    type: String
   },
   date:{
     type: Date,
@@ -37,4 +47,16 @@ const UserSchema = new Schema({
   }
 });
 
-module.exports = User = mongoose.model('users', UserSchema);
+//Password hashing
+userSchema.pre('save', async function (next){
+  const user = this // this has access to data in req.body
+
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+
+  next();
+})
+
+
+module.exports = User = mongoose.model('User', userSchema);
