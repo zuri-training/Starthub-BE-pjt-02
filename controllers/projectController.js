@@ -1,12 +1,14 @@
 const Project = require("../models/Project");
 
 exports.addProject = async (req, res) => {
+  let userId = req.user._id
   const newProject = await Project.create({
     //   ...req.body
     projectName: req.body.projectName,
     projectInfo: req.body.projectInfo,
     projectImage: req.body.projectImage,
     projectUrl: req.body.projectUrl,
+    projectOwner: userId
   });
 
   try {
