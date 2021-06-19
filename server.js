@@ -8,7 +8,6 @@ const connectDB = require("./db");
 
 // import routes
 const projectRoutes = require('./routes/projectRoutes')
-const authRoutes = require('./routes/authRoutes')
 
 const app = express();
 
@@ -19,7 +18,6 @@ app.use(cors());
 connectDB();
 
 // routes
-app.use("/auth", authRoutes)
 app.use(projectRoutes)
 
 const port = process.env.PORT || 3000
