@@ -20,16 +20,16 @@ const UserSchema = new Schema({
     require: true
   },
   studentId:{
-    type: String,
+    type: Number,
     require: true
   },
   profilePicture: {
     data: Buffer,
-    type: string,
+    type: String,
     
   },
   bio: {
-    type: string
+    type: String
   },
   date:{
     type: Date,

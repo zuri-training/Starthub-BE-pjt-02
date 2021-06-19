@@ -1,23 +1,24 @@
-
 const express = require("express");
-const mongoose = require("mongoose");
+const cors = require('cors')
 const dotenv = require('dotenv');
 dotenv.config();
 
 //import db connection
 const connectDB = require("./db");
 
+// import routes
+const projectRoutes = require('./routes/projectRoutes')
+
 const app = express();
 
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 // connect db
 connectDB();
 
-// Basic test route
-app.get("/", (req, res) => {
-  res.send("Starthub app!");
-});
+// routes
+app.use(projectRoutes)
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
