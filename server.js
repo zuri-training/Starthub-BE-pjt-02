@@ -1,6 +1,6 @@
 
 const express = require('express');
-const userRouter = require('./routes/intern');
+const userRouter = require('./routes/user');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -9,8 +9,8 @@ const connectDB = require('./db');
 
 const app = express();
 
-app.use(express.json({ extended: false }));
-app.use(userRouter)
+app.use(express.json({extended: false}));
+app.use('/api/auth', userRouter);
 
 // connect db
 connectDB();
