@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors')
+const cors = require('cors');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -7,7 +7,8 @@ dotenv.config();
 const connectDB = require("./db");
 
 // import routes
-const projectRoutes = require('./routes/projectRoutes')
+const projectRoutes = require('./routes/projectRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.use(cors());
 connectDB();
 
 // routes
-app.use(projectRoutes)
+app.use(projectRoutes);
+app.use('/api/auth', userRoutes);
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
