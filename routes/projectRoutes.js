@@ -9,14 +9,14 @@ const {
 } = require('../controllers/projectController');
 const protect = require('../middleware/authMiddleware');
 
-router.post('/projects', protect, addProject);
+router.post('/', protect, addProject);
 
-router.get('/projects', getProjects);
+router.get('/', getProjects);
 
-router.get('/projects/:id', getProject);
+router.get('/:id', getProject);
 
-router.put('/projects/:id', protect, updateProject);
+router.put('/:id', protect, updateProject);
 
-router.delete('/projects/:id', protect, deleteProject);
+router.delete('/:id', protect, deleteProject);
 
 module.exports = router;

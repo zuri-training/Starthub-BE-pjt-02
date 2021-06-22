@@ -7,7 +7,9 @@ Starthub.com is a website where individuals that have passed through the start.n
 This is the backend part of the project
 
 ---
-## Dependencies 
+
+## Dependencies
+
 - express
 - mongoose
 - bcryptjs
@@ -20,10 +22,11 @@ This is the backend part of the project
 For development, you will only need Node.js and a node global package, Yarn or npm, installed in your environement.
 
 ### Node
+
 - #### Node installation on Windows
 
   Just go on [official Node.js website](https://nodejs.org/) and download the installer.
-Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
+  Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
 
 - #### Node installation on Ubuntu
 
@@ -55,6 +58,17 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
     $ cd Starthub-BE-pjt2
     $ npm install
 
+## Setup
+
+###### create a .env file and add the folling varibles to it
+
+```javascript
+ PORT = your desired port
+ NODE_ENV = development
+ MONGO_URI = your mongodb connection string // xxxx xxxx xxxxx.
+ SECRET = your desired secreet
+```
+
 ## Running the project
 
     $ npm run dev
@@ -62,3 +76,57 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 ## Simple build for production
 
     $ npm build
+
+## API ROUTES
+
+- ##### default route - method `GET` http://localhost:3000/api/v1/ : access public
+
+- ##### sign up route - method `POST` http://localhost:3000/api/v1/auth/sign-up : access public
+
+###### example
+
+```
+   firstName: string,
+   lastName:  string,
+   email:  string,
+   password:  string,
+   studentId: string // must be a valid stundent id
+```
+
+###### payload
+
+```
+{
+    "success": true,
+    "message": "Signup successfull",
+    "data": {
+        "id": "xxxxxxxx",
+        "name": "test user",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZDFkYmJlMjY4YjJjMzM4MGFmNWMwZCIsImlhdCI6MTYyNDM2NjAxNH0.mS_xSQyGJMFYA4-7p2AusOCjRsGu4PqxtPOvBBHjBkA"
+    }
+}
+```
+
+- ##### login route - method `POST` http://localhost:3000/api/v1/auth/sign-in : access public
+
+###### example
+
+```
+   email:  string,
+   password:  string,
+```
+
+###### payload
+
+```
+{
+    "success": true,
+    "message": "Logged in successfully",
+    "data": {
+        "firstName": "test",
+        "lastName": "user",
+        "email": "test@test.com",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZDFkYmJlMjY4YjJjMzM4MGFmNWMwZCIsImlhdCI6MTYyNDM2NjA3MCwiZXhwIjoxNjI0NzI2MDcwfQ.Hqtgt3iuKzykuoqGtDVOiA0ZTSOtkMp7BteXZXPsbEo"
+    }
+}
+```

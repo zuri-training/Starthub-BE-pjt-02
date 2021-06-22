@@ -8,10 +8,6 @@ const connectDB = require('./db');
 // import error middlewares
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 
-// import routes
-const projectRoutes = require('./routes/projectRoutes');
-const userRoutes = require('./routes/userRoutes');
-
 const app = express();
 
 app.use(express.json({ extended: false }));
@@ -20,9 +16,7 @@ app.use(cors());
 // connect db
 connectDB();
 
-// routes
-app.use(projectRoutes);
-app.use('/api/auth', userRoutes);
+// api routes
 app.use('/api/v1', require('./routes/index.routes'));
 
 app.get('/', (req, res) => {
