@@ -55,3 +55,39 @@
     }
 }
 ```
+
+## User Routes
+
+- #### user profile - method `GET` http://localhost:3000/api/v1/users/profile : access private
+
+### dsescription: get user specific info
+
+###### example
+
+<b>requries access token to access this route</b>
+
+```javascript
+
+ in  javaScript you make use of this - { headers: { Authorization: `Bearer ${token}` } };
+
+ while on postman you make use of  Header,
+  search for Authorization
+   value `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.`
+```
+
+- #### user projects - method `GET` http://localhost:3000/api/v1/users/projects : access private
+
+### dsescription: get all users projects
+
+###### example
+
+<b>requries user token to access this route</b>
+
+```javascript
+
+ in  javaScript you make use of this - { headers: { Authorization: `Bearer ${token}` } };
+
+ while on postman you make use of  Header,
+  search for Authorization
+   value `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.`
+```
