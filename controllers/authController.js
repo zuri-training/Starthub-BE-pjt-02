@@ -4,8 +4,14 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 const students = require('../db/data');
+const asyncHandler = require('../middleware/asyncHandler');
 
-const signupUser = async (req, res) => {
+/**
+ * @ {desc}   message  User sign up
+ * @ {route}  message  POST /api/v1/auth/sign-up
+ * @ {access} message Public
+ */
+const signupUser = asyncHandler(async (req, res) => {
   //  check errors
   const errors = validationResult(req);
   if (!errors.isEmpty())
@@ -39,9 +45,14 @@ const signupUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+});
 
-const loginUser = async (req, res) => {
+/**
+ * @ {desc}   message User sign in
+ * @ {route}  message  POST /api/v1/auth/sign-in
+ * @ {access} message Public
+ */
+const loginUser = asyncHandler(async (req, res) => {
   //check for errors
   const errors = validationResult(req);
   if (!errors.isEmpty())
@@ -76,6 +87,6 @@ const loginUser = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+});
 
 module.exports = { signupUser, loginUser };
