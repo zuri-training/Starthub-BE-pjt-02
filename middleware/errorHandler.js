@@ -42,8 +42,6 @@ const errorHandler = (err, req, res, next) => {
     error = new ErrorPayload('Unauthorized access: Token  expired', 401);
   }
 
-  console.log(err);
-
   res.status(error.statusCode || 500);
   res.json({
     message:
