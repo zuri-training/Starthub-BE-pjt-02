@@ -1,7 +1,10 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-
-const protect = async (req, res, next) => {
+const asyncHandler = require('./asyncHandler');
+/**
+ * middleware to handle authrization in routes
+ */
+const protect = asyncHandler(async (req, res, next) => {
   // check if token exist in the header Auth
   if (!req.headers.authorization)
     res.status(401).json({ message: 'Unauthorized access: Token not found' });
@@ -20,6 +23,6 @@ const protect = async (req, res, next) => {
   req.user = user; //assign user to request object
 
   next();
-};
+});
 
 module.exports = protect;
