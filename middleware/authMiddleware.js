@@ -20,6 +20,11 @@ const protect = asyncHandler(async (req, res, next) => {
       .status(401)
       .json({ message: 'Unauthorized access: User does not exist' });
 
+  if (!user.active == true)
+    res
+      .status(401)
+      .json({ message: 'Unauthorized access: User has been deactivated' });
+
   req.user = user; //assign user to request object
 
   next();
