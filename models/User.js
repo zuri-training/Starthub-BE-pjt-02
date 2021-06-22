@@ -37,6 +37,10 @@ const userSchema = new Schema(
     bio: {
       type: String,
     },
+    active: {
+      type: Boolean,
+      default: true,
+    },
     date: {
       type: Date,
       default: Date.now,
@@ -52,7 +56,8 @@ userSchema.pre('save', async function (next) {
   const user = this; // this has access to data in req.body
 
   if (user.isModified('password')) {
-    user.password = await bcrypt.hash(user.password, 8);
+    const salt = await bcrypt.genSalt(12);
+    user.password = await bcrypt.hash(user.password, salt);
   }
 
   next();
