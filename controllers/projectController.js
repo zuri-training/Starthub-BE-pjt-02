@@ -1,20 +1,21 @@
-const Project = require("../models/Project");
+// const asyncHandler = require('../middleware/asyncHandler');
+const Project = require('../models/Project');
 
 exports.addProject = async (req, res) => {
-  let userId = req.user._id
+  let userId = req.user._id;
   const newProject = await Project.create({
     //   ...req.body
     projectName: req.body.projectName,
     projectInfo: req.body.projectInfo,
     projectImage: req.body.projectImage,
     projectUrl: req.body.projectUrl,
-    projectOwner: userId
+    projectOwner: userId,
   });
 
   try {
     newProject.save();
     res.status(200).json({
-      message: "successfully created a new project",
+      message: 'successfully created a new project',
       data: newProject,
     });
   } catch (error) {
@@ -28,7 +29,7 @@ exports.getProjects = async (req, res) => {
   try {
     res
       .status(200)
-      .json({ message: "successfully fetched all projects", data: projects });
+      .json({ message: 'successfully fetched all projects', data: projects });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -40,11 +41,11 @@ exports.getProject = async (req, res) => {
   try {
     if (!project) {
       res.status(404).json({
-        message: "project with that id not found",
+        message: 'project with that id not found',
       });
     } else {
       res.status(200).json({
-        message: "successfully fetched the requested project",
+        message: 'successfully fetched the requested project',
         data: project,
       });
     }
@@ -68,11 +69,11 @@ exports.updateProject = async (req, res) => {
 
   try {
     if (!updatedProject) {
-      res.status(404).json({ message: "project with that id not found" });
+      res.status(404).json({ message: 'project with that id not found' });
     } else {
       updatedProject.save();
       res.status(200).json({
-        message: "project updated successfully",
+        message: 'project updated successfully',
         data: updatedProject,
       });
     }
@@ -86,11 +87,18 @@ exports.deleteProject = async (req, res) => {
 
   try {
     if (!deletedProject) {
-      res.status(404).json({ message: "project with id not found" });
+      res.status(404).json({ message: 'project with id not found' });
     } else {
-      res.status(200).json({ message: "project deleted successfully" });
+      res.status(200).json({ message: 'project deleted successfully' });
     }
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
+
+/**
+ *  async handler helps to prevent unwanted errors that might brake the server.
+ * (e.g) exports.addProject = asyncHandler(async (req, res, next) => {
+  //  your code here
+})  // do this to all your routes
+*/

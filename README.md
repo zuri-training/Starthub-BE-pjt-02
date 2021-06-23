@@ -7,7 +7,9 @@ Starthub.com is a website where individuals that have passed through the start.n
 This is the backend part of the project
 
 ---
-## Dependencies 
+
+## Dependencies
+
 - express
 - mongoose
 - bcryptjs
@@ -20,10 +22,11 @@ This is the backend part of the project
 For development, you will only need Node.js and a node global package, Yarn or npm, installed in your environement.
 
 ### Node
+
 - #### Node installation on Windows
 
   Just go on [official Node.js website](https://nodejs.org/) and download the installer.
-Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
+  Also, be sure to have `git` available in your PATH, `npm` might need it (You can find git [here](https://git-scm.com/)).
 
 - #### Node installation on Ubuntu
 
@@ -55,6 +58,17 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
     $ cd Starthub-BE-pjt2
     $ npm install
 
+## Setup
+
+###### create a .env file and add the folling varibles to it
+
+```javascript
+ PORT = your desired port
+ NODE_ENV = development
+ MONGO_URI = your mongodb connection string // xxxx xxxx xxxxx.
+ SECRET = your desired secreet
+```
+
 ## Running the project
 
     $ npm run dev
@@ -62,3 +76,8 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 ## Simple build for production
 
     $ npm build
+
+## Routes
+
+- ###### <a href="./docs/Readme.md">Routes Docs</a>
+- <a href="http://localhost:4000">StartHub</a>
