@@ -1,7 +1,8 @@
 // const asyncHandler = require('../middleware/asyncHandler');
 const Project = require('../models/Project');
+const asyncHandler = require('../middleware/asyncHandler')
 
-exports.addProject = async (req, res) => {
+exports.addProject = asyncHandler(async (req, res) => {
   let userId = req.user._id;
   const newProject = await Project.create({
     //   ...req.body
@@ -21,9 +22,9 @@ exports.addProject = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+});
 
-exports.getProjects = async (req, res) => {
+exports.getProjects = asyncHandler(async (req, res) => {
   const projects = await Project.find({});
 
   try {
@@ -33,9 +34,9 @@ exports.getProjects = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+});
 
-exports.getProject = async (req, res) => {
+exports.getProject = asyncHandler(async (req, res) => {
   const project = await Project.findById(req.params.id);
 
   try {
@@ -52,9 +53,9 @@ exports.getProject = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+});
 
-exports.updateProject = async (req, res) => {
+exports.updateProject = asyncHandler(async (req, res) => {
   const updatedProject = await Project.findByIdAndUpdate(
     req.params.id,
     {
@@ -80,9 +81,9 @@ exports.updateProject = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+});
 
-exports.deleteProject = async (req, res) => {
+exports.deleteProject = asyncHandler(async (req, res) => {
   const deletedProject = await Project.findByIdAndDelete(req.params.id);
 
   try {
@@ -94,7 +95,7 @@ exports.deleteProject = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-};
+});
 
 /**
  *  async handler helps to prevent unwanted errors that might brake the server.
